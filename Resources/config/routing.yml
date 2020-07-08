@@ -1,0 +1,3 @@
+ho_peter1018_sequential_counter_format_homepage:
+    path:     /
+    defaults: { _controller: HoPeter1018SequentialCounterFormatBundle:Default:index }

@@ -1,0 +1,27 @@
+{
+    "name": "hopeter1018/sequential-counter-format-bundle",
+    "description": "",
+    "keywords": ["Symfony", "Bundle", "Doctrine"],
+    "version": "1.0.1",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Peter",
+            "email": "hokwaichi@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "HoPeter1018\\SequentialCounterFormatBundle\\": ""
+        }
+    },
+    "require": {
+        "php": ">=5.5.9"
+    },
+    "require-dev": {
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

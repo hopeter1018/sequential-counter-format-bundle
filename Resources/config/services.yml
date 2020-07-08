@@ -1,0 +1,33 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    HoPeter1018\SequentialCounterFormatBundle\EventListener\SequentialCounterFormatterEvent:
+        class: HoPeter1018\SequentialCounterFormatBundle\EventListener\SequentialCounterFormatterEvent
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+
+    HoPeter1018\SequentialCounterFormatBundle\Services\SequentialCounterFormatter:
+        class: HoPeter1018\SequentialCounterFormatBundle\Services\SequentialCounterFormatter
+
+    HoPeter1018\SequentialCounterFormatBundle\CacheWarm\MappingCache:
+        class: HoPeter1018\SequentialCounterFormatBundle\CacheWarm\MappingCache
+        arguments:
+            - "%kernel.cache_dir%"
+            - "%kernel.debug%"
+
+    HoPeter1018\SequentialCounterFormatBundle\CacheWarm\MappingCacheWarmUp:
+        class: HoPeter1018\SequentialCounterFormatBundle\CacheWarm\MappingCacheWarmUp
+        arguments:
+            - []
+            - "@Doctrine\\Common\\Persistence\\ManagerRegistry"
+            - "@HoPeter1018\\SequentialCounterFormatBundle\\CacheWarm\\MappingCache"
+        tags:
+            - { name: kernel.cache_warmer, priority: 0 }
+
+    HoPeter1018\SequentialCounterFormatBundle\Command\DumpDummyCommand:
+        class: HoPeter1018\SequentialCounterFormatBundle\Command\DumpDummyCommand
+        tags:
+            -  { name: console.command }
