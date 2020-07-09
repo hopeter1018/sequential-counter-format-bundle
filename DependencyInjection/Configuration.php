@@ -24,7 +24,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('ho_peter1018_sequential_counter_format');
+        $rootNode = $treeBuilder->root('hopeter1018_sequential_counter_format');
 
         $rootNode
             ->children()
