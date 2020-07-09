@@ -2,7 +2,7 @@
     "name": "hopeter1018/sequential-counter-format-bundle",
     "description": "This bundle aims to generate value for doctrine entities.",
     "keywords": ["Symfony", "Bundle", "Doctrine"],
-    "version": "1.0.3",
+    "version": "1.0.4",
     "license": "MIT",
     "authors": [
         {
