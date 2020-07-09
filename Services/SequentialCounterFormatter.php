@@ -27,6 +27,15 @@ use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
  */
 class SequentialCounterFormatter
 {
+    // @see https://www.php.net/manual/en/function.date.php#refsect1-function.date-parameters
+    const DATE_FORMAT_DAY = 'dDjlNswz';
+    const DATE_FORMAT_WEEK = 'W';
+    const DATE_FORMAT_MONTH = 'FmMnt';
+    const DATE_FORMAT_YEAR = 'LoYy';
+    const DATE_FORMAT_TIME = 'aABgGhHisuv';
+    const DATE_FORMAT_TIMEZONE = 'eIOPTZ';
+    const DATE_FORMAT_FULL = 'crU';
+
     protected $config;
     protected $mappingCache;
     protected $ruleByName;
@@ -141,14 +150,6 @@ class SequentialCounterFormatter
 
     protected function format($ruleBatch, $counter)
     {
-        // $propertyAccessor = $this->propertyAccessor;
-        // $dateParameters = 'Y-y-M-m-W-d-w-N-H-i';
-        // $keys = explode('-', '{'.str_replace('-', '}-{', $dateParameters).'}');
-        // $values = explode('-', date($dateParameters));
-        // $format = preg_replace_callback('|\\[([^\\\-]+)\\]|', function ($matches) use ($entity, $propertyAccessor) {
-        //     return $propertyAccessor->getValue($entity, $matches[1]);
-        // }, $rule['format']);
-
         return sprintf($ruleBatch, $counter);
     }
 }
