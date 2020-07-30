@@ -36,12 +36,20 @@ class MappingCacheWarmUp implements CacheWarmerInterface
 
     public function warmUp($cacheDir)
     {
+        $managerNames = array_keys($this->managerRegistry->getManagers());
+        if (0 === count($this->config['managers'])) {
+            $this->config['managers'] = $managerNames;
+        }
+        $metadatas = [];
         foreach ($this->config['managers'] as $managerName) {
-            // foreach ($this->managerRegistry->getManagers() as $managerName => $manager) {
             $manager = $this->managerRegistry->getManager($managerName);
             foreach ($manager->getMetadataFactory()->getAllMetadata() as $metadata) {
-                $this->cache->rules($manager, $metadata->name);
+                $metadatas[$metadata->name] = $metadata;
             }
+        }
+
+        foreach ($metadatas as $metadata) {
+            $this->cache->load($metadata);
         }
     }
 }
