@@ -21,7 +21,7 @@ class SequentialCounterRepository extends EntityRepository
         ]);
         if (null === $entity) {
             $entity = new SequentialCounter();
-            $entity->setBatch($batch)->setCounter($start);
+            $entity->setBatch($batch)->setCounter($start)->setEntityFqcn($entityClass);
         } else {
             $entity->setCounter($entity->getCounter() + 1);
         }

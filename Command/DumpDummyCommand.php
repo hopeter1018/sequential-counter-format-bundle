@@ -53,6 +53,7 @@ class DumpDummyCommand extends Command
         foreach ($manager->getMetadataFactory()->getAllMetadata() as $metadata) {
             $rules = $this->mappingCache->rules($manager, $metadata->name);
             if (count($rules) > 0) {
+                $io->text('Dump:'.$metadata->name);
                 $entity = $metadata->newInstance();
                 $this->scf->setEm($manager);
                 $this->scf->checkAndSetFormattedCounter($entity);

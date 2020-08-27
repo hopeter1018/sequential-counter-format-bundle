@@ -128,7 +128,11 @@ class SequentialCounterFormatter
             $propertyAccessor = $this->propertyAccessor;
 
             return preg_replace_callback('|\\[([^\\\-]+)\\]|', function ($matches) use ($entity, $propertyAccessor) {
-                return $propertyAccessor->getValue($entity, $matches[1]);
+                try {
+                    return $propertyAccessor->getValue($entity, $matches[1]);
+                } catch (\Exception $ex) {
+                    return $matches[1];
+                }
             }, $rule['batch_prefix']);
         } else {
             return '';
