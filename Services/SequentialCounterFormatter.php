@@ -103,7 +103,7 @@ class SequentialCounterFormatter
                 $ruleBatch = $this->formatWithoutCounter($entity, $rule);
                 $batchPrefix = $this->batchPrefix($entity, $rule);
                 if (null === $this->propertyAccessor->getValue($entity, $rule['property'])) {
-                    $counter = $this->em->getRepository($this->config['class'])->getNext($batchPrefix.$ruleBatch);
+                    $counter = $this->em->getRepository($this->config['class'])->getNext($rule['entity_class'], $rule['start'], $batchPrefix.$ruleBatch);
                     $this->propertyAccessor->setValue($entity, $rule['property'], $this->format($ruleBatch, $counter));
                 }
             }
@@ -116,7 +116,7 @@ class SequentialCounterFormatter
             $ruleBatch = $this->formatWithoutCounter($entity, $rule);
             $batchPrefix = $this->batchPrefix($entity, $rule);
             if (null === $this->propertyAccessor->getValue($entity, $rule['property'])) {
-                $counter = $this->em->getRepository($this->config['class'])->getNext($batchPrefix.$ruleBatch);
+                $counter = $this->em->getRepository($this->config['class'])->getNext($rule['entity_class'], $rule['start'], $batchPrefix.$ruleBatch);
                 $this->propertyAccessor->setValue($entity, $rule['property'], $this->format($ruleBatch, $counter));
             }
         }

@@ -41,7 +41,6 @@ class MappingCache
 
     public function rules($manager, string $entityFqcn)
     {
-        // $manager = $this->managerRegistry->getManagerForClass($entityFqcn);
         $metadata = $manager->getMetadataFactory()->getMetadataFor($entityFqcn);
 
         $filename = $this->cacheFolder.'/hopeter1018/sequential-counter-format/rules'.'_'.str_replace('\\', '-', $entityFqcn).md5($entityFqcn);
@@ -75,12 +74,14 @@ class MappingCache
                 if (is_array($setting)) {
                     $format = $setting['format'];
                     $batchPrefix = $setting['batchPrefix'];
+                    $start = isset($setting['start']) ? $setting['start'] : 1;
                 }
                 $rules[$prefix.$name.'-'.$format] = [
                     'entity_class' => $entityFqcn,
                     'property' => $name,
                     'format' => $format,
                     'batch_prefix' => $batchPrefix,
+                    'start' => $start,
                 ];
                 SequentialCounterFormatter::parseRule($rules[$prefix.$name.'-'.$format]);
             }
@@ -93,12 +94,14 @@ class MappingCache
                 if (is_array($format)) {
                     $format = $propAnno->setting['format'];
                     $batchPrefix = $propAnno->setting['batchPrefix'];
+                    $start = isset($setting['start']) ? $setting['start'] : 1;
                 }
                 $rules[$prefix.$name.'-'.$format] = [
                     'entity_class' => $entityFqcn,
                     'property' => $property->name,
                     'format' => $format,
                     'batch_prefix' => $batchPrefix,
+                    'start' => $start,
                 ];
                 SequentialCounterFormatter::parseRule($rules[$prefix.$name.'-'.$format]);
             }

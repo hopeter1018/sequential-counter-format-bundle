@@ -36,6 +36,23 @@ class SequentialCounter
      * @Assert\NotNull
      */
     protected $batch;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="entity_fqcn", type="string", length=255)
+     * @Assert\NotNull
+     */
+    protected $entityFqcn;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(type="integer", nullable=true)
+     * @Assert\NotNull
+     */
+    protected $start;
+
     /**
      * @var int
      *
@@ -77,5 +94,53 @@ class SequentialCounter
     public function getBatch(): ?string
     {
         return $this->batch;
+    }
+
+    /**
+     * Get the value of Entity Fqcn.
+     *
+     * @return string
+     */
+    public function getEntityFqcn()
+    {
+        return $this->entityFqcn;
+    }
+
+    /**
+     * Set the value of Entity Fqcn.
+     *
+     * @param string $entityFqcn
+     *
+     * @return self
+     */
+    public function setEntityFqcn($entityFqcn)
+    {
+        $this->entityFqcn = $entityFqcn;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of Start.
+     *
+     * @return string
+     */
+    public function getStart()
+    {
+        return $this->start;
+    }
+
+    /**
+     * Set the value of Start.
+     *
+     * @param string $start
+     *
+     * @return self
+     */
+    public function setStart($start)
+    {
+        $this->start = $start;
+
+        return $this;
     }
 }

@@ -13,12 +13,15 @@ use HoPeter1018\SequentialCounterFormatBundle\Entity\SequentialCounter;
 
 class SequentialCounterRepository extends EntityRepository
 {
-    public function getNext($batch)
+    public function getNext($entityClass, $start, $batch)
     {
-        $entity = $this->findOneBy(['batch' => $batch]);
+        $entity = $this->findOneBy([
+          'batch' => $batch,
+          'entityFqcn' => $entityClass,
+        ]);
         if (null === $entity) {
             $entity = new SequentialCounter();
-            $entity->setBatch($batch)->setCounter(1);
+            $entity->setBatch($batch)->setCounter($start);
         } else {
             $entity->setCounter($entity->getCounter() + 1);
         }
