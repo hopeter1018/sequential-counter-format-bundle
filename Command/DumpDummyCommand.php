@@ -47,17 +47,22 @@ class DumpDummyCommand extends Command
         $io = new SymfonyStyle($input, $output);
         $io->title('[hopeter1018] Sequential Counter Format Dump Dummy');
 
-        // $cache = $this->getContainer()->get(MappingCache::class);
-        // $sequentialCounterFormatter = $this->getContainer()->get(SequentialCounterFormatter::class);
-        $manager = $this->managerRegistry->getManager('default');
-        foreach ($manager->getMetadataFactory()->getAllMetadata() as $metadata) {
-            $rules = $this->mappingCache->rules($manager, $metadata->name);
-            if (count($rules) > 0) {
-                $io->text('Dump:'.$metadata->name);
-                $entity = $metadata->newInstance();
-                $this->scf->setEm($manager);
-                $this->scf->checkAndSetFormattedCounter($entity);
-                dump($entity);
+        $managerNames = array_keys($this->managerRegistry->getManagers());
+        if (0 === count($this->config['managers'])) {
+            $this->config['managers'] = $managerNames;
+        }
+        foreach ($this->config['managers'] as $managerName) {
+            $manager = $this->managerRegistry->getManager($managerName);
+            foreach ($manager->getMetadataFactory()->getAllMetadata() as $metadata) {
+                $rules = $this->mappingCache->rules($manager, $metadata->name);
+
+                if (count($rules) > 0) {
+                    $io->text('Dump:'.$metadata->name);
+                    $entity = $metadata->newInstance();
+                    $this->scf->setEm($manager);
+                    $this->scf->checkAndSetFormattedCounter($entity);
+                    dump($entity);
+                }
             }
         }
 

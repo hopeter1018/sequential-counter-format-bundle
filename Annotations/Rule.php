@@ -26,7 +26,7 @@ class Rule
     public $batchPrefix = '';
 
     /**
-     * @var int|null
+     * @var int
      */
     public $start = null;
 }

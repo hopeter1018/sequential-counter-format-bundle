@@ -31,7 +31,7 @@ class MappingCacheWarmUp implements CacheWarmerInterface
 
     public function isOptional()
     {
-        return true;
+        return false;
     }
 
     public function warmUp($cacheDir)
@@ -40,7 +40,6 @@ class MappingCacheWarmUp implements CacheWarmerInterface
         if (0 === count($this->config['managers'])) {
             $this->config['managers'] = $managerNames;
         }
-        $metadatas = [];
         foreach ($this->config['managers'] as $managerName) {
             $manager = $this->managerRegistry->getManager($managerName);
             foreach ($manager->getMetadataFactory()->getAllMetadata() as $metadata) {

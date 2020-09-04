@@ -17,6 +17,7 @@ services:
         arguments:
             - "%kernel.cache_dir%"
             - "%kernel.debug%"
+            - "@file_locator"
 
     HoPeter1018\SequentialCounterFormatBundle\CacheWarm\MappingCacheWarmUp:
         class: HoPeter1018\SequentialCounterFormatBundle\CacheWarm\MappingCacheWarmUp
