@@ -96,6 +96,7 @@ class MappingCache
             foreach ($classAnno->settings as $name => $setting) {
                 $format = $setting;
                 $batchPrefix = null;
+                $start = 1;
                 if (is_array($setting)) {
                     $format = $setting['format'];
                     $batchPrefix = $setting['batchPrefix'];
@@ -116,6 +117,7 @@ class MappingCache
             if (null !== $propAnno) {
                 $format = $propAnno->setting;
                 $batchPrefix = null;
+                $start = 1;
                 if (is_array($format)) {
                     $format = $propAnno->setting['format'];
                     $batchPrefix = $propAnno->setting['batchPrefix'];
