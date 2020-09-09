@@ -39,13 +39,23 @@ $bundles = [
 #### thru config.yml / config.yaml
 
 ```yml
-ho_peter1018_sequential_counter_format:
+hopeter1018_sequential_counter_format:
   # managers: ['default'] # add / modify if you are not using 'default'
   rules:
     _rule_alias_:
         entity_class: 'Your\Bundle\Entity\EntityClass'
         property: 'yamlTargetPropertyName'
         format: '__SEE_FORMAT_SECTION__'
+```
+
+#### thru @YourBundle/Resources/config/sequential_counter_format.yaml
+
+```yml
+Your\Bundle\Entity\EntityClass:
+  attributes:
+    yamlTargetPropertyName:
+      format: "__SEE_FORMAT_SECTION__"
+      batchPrefix: ""
 ```
 
 #### thru Doctrine Annotation
